@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:text="@string/refresh" />
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activity_main__recycler_view"
         android:layout_width="match_parent"
@@ -28,7 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:visibility="gone"
         android:background="@color/white"
         android:hint="@string/activity_main__write_note" />
 
