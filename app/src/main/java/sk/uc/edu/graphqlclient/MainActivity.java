@@ -9,8 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.List;
+
 import sk.uc.edu.graphqlclient.adapter.Adapter;
 import sk.uc.edu.graphqlclient.addingForm.AddItemActivity;
+import sk.uc.edu.graphqlclient.util.Utils;
 import sk.uc.edu.graphqlclient.viewModel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,13 +34,16 @@ public class MainActivity extends AppCompatActivity {
         initLayout();
 
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
-        adapter = new Adapter();
+        adapter = new Adapter(id -> {
+            mainActivityViewModel.finish(id);
+        });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
 
         mainActivityViewModel.getTodosData().observe(this, data -> {
             if (data != null) {
-                adapter.swapItems(data.getAll);
+                List<GetTodosQuery.GetAll> getAlls = Utils.filterData(data.getAll);
+                adapter.swapItems(getAlls);
             }
         });
 

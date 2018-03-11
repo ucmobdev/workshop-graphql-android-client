@@ -11,6 +11,7 @@ import com.apollographql.apollo.exception.ApolloException;
 
 import javax.annotation.Nonnull;
 
+import sk.uc.edu.graphqlclient.FinishIdMutation;
 import sk.uc.edu.graphqlclient.GetTodosQuery;
 import sk.uc.edu.graphqlclient.apolloClient.MyApolloClient;
 
@@ -53,5 +54,23 @@ public class MainActivityViewModel extends ViewModel {
                 //Toast.makeText(MainActivity.this, "Failure called " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void finish(String id) {
+        myApolloClient.mutate(FinishIdMutation
+                .builder()
+                .id(id)
+                .build())
+                .enqueue(new ApolloCall.Callback<FinishIdMutation.Data>() {
+                    @Override
+                    public void onResponse(@Nonnull Response<FinishIdMutation.Data> response) {
+                        loadData();
+                    }
+
+                    @Override
+                    public void onFailure(@Nonnull ApolloException e) {
+
+                    }
+                });
     }
 }

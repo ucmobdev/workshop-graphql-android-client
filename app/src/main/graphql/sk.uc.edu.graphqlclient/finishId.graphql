@@ -1,0 +1,3 @@
+ mutation finishId($id : ID){
+   finish(id : $id)
+ }

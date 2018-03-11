@@ -23,10 +23,13 @@ import sk.uc.edu.graphqlclient.R;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ItemViewHolder> {
 
+    private final AdapterInteractorListener listener;
     private List<GetTodosQuery.GetAll> listItems;
 
-    public Adapter() {
+    public Adapter(AdapterInteractorListener listener) {
+        this.listener = listener;
         this.listItems = new ArrayList<>();
+
     }
 
     @Override
@@ -39,6 +42,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ItemViewHolder> {
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         GetTodosQuery.GetAll item = listItems.get(position);
         holder.getViewById().setText(item.description());
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onFinishClicked(item.id());
+            }
+        });
     }
 
     @Override
