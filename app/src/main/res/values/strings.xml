@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">graphqlclient</string>
+    <string name="refresh">Refresh</string>
+    <string name="activity_main__add">Add item</string>
+    <string name="activity_main__write_note">write note ...</string>
 </resources>

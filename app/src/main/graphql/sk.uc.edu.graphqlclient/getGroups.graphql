@@ -1,6 +1,5 @@
-query getGroups{
-  users {
-    id,
-    name
+query getTodos{
+  getAll{
+    title, description, id, isFinished
   }
 }
