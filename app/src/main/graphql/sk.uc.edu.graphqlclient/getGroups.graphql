@@ -1,5 +1,0 @@
-query getTodos{
-  getAll{
-    title, description, id, isFinished
-  }
-}

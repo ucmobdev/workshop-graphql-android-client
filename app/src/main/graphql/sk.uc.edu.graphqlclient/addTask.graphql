@@ -1,3 +1,0 @@
-mutation addItem($title: String, $description: String){
-  create(title : $title, description: $description)
-}

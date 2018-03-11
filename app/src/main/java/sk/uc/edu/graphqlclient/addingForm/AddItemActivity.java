@@ -1,6 +1,5 @@
 package sk.uc.edu.graphqlclient.addingForm;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -28,7 +27,6 @@ public class AddItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_item);
         initLayout();
 
-        model = ViewModelProviders.of(this).get(AddEditActivityModel.class);
     }
 
     private void initLayout() {
@@ -37,21 +35,6 @@ public class AddItemActivity extends AppCompatActivity {
         descriptionEditText = findViewById(R.id.main_form__description);
 
         sendButton = findViewById(R.id.activity_add_edit_item__add_item_button);
-        sendButton.setOnClickListener(v -> {
-            sendAddItemRequest();
-        });
     }
 
-    private void sendAddItemRequest() {
-        model.sendAddItemRequest(
-                String.valueOf(titleEditText.getText()),
-                String.valueOf(descriptionEditText.getText())
-        );
-    }
-
-    @Override
-    public void onBackPressed() {
-        sendAddItemRequest();
-        super.onBackPressed();
-    }
 }
